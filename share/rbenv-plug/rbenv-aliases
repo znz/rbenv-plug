@@ -1,0 +1,2 @@
+rbenv plug https://github.com/tpope/rbenv-aliases.git
+rbenv alias --auto

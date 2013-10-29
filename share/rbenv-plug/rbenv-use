@@ -1,0 +1,2 @@
+rbenv plug rbenv-whatis || :
+rbenv plug https://github.com/rkh/rbenv-use.git

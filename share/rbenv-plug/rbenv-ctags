@@ -1,0 +1,2 @@
+rbenv plug https://github.com/tpope/rbenv-ctags.git
+rbenv ctags
