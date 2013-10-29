@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+#
+# Summary: Install plugin and run script around installing plugin
+#
+# Usage: rbenv plug <name>
+#        rbenv plug <git-url>
+
+set -e
+[ -n "$RBENV_DEBUG" ] && set -x
+set -u
+shopt -s nullglob
+
+[ $# -gt 0 ] || exec rbenv-help plug
+
+cd "$(dirname "$0")/.."
+PLUGIN_ROOT="$(pwd)"
+cd "$RBENV_DIR"
+
+# Provide rbenv completions
+if [ "$1" = "--complete" ]; then
+  {
+    for definition in "$PLUGIN_ROOT/share/rbenv-plug/"*; do
+      echo ${definition##*/}
+    done
+    for definition in "$PLUGIN_ROOT/share/rbenv-plug/rbenv-"*; do
+      echo ${definition##*/rbenv-}
+    done
+  } | sort
+  exit 0
+fi
+
+mkdir -p "$RBENV_ROOT/plugins"
+
+if [ -f "$PLUGIN_ROOT/share/rbenv-plug/$1" ]; then
+  . "$PLUGIN_ROOT/share/rbenv-plug/$1"
+  exit $?
+elif [ -f "$PLUGIN_ROOT/share/rbenv-plug/rbenv-$1" ]; then
+  . "$PLUGIN_ROOT/share/rbenv-plug/rbenv-$1"
+  exit $?
+fi
+
+case "$1" in
+  *://*)
+    git_url="$1"
+    plugin_name=${git_url##*/}
+    plugin_name=${plugin_name%.git}
+    plugin_dir="$RBENV_ROOT/plugins/$plugin_name"
+    if [ -d "$plugin_dir" ]; then
+      echo "$plugin_name already installed."
+      exit 1
+    fi
+    echo "Cloning ${git_url}..." >&2
+    git clone "$git_url" "$plugin_dir"
+    exit $?
+    ;;
+  *)
+    exec rbenv-help plug
+    ;;
+esac

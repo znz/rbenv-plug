@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+#
+# Summary: Remove plugins.
+#
+# Usage: rbenv unplug <plugin> [<plugin> ...]
+
+set -e
+[ -n "$RBENV_DEBUG" ] && set -x
+set -u
+shopt -s nullglob
+
+[ $# -gt 0 ] || exec rbenv-help unplug
+
+# Provide rbenv completions
+if [ --complete = "$1" ]; then
+  {
+    for plugin in "$RBENV_ROOT/plugins/"*; do
+      echo ${plugin##*/}
+    done
+    for plugin in "$RBENV_ROOT/plugins/rbenv-"*; do
+      echo ${plugin##*/rbenv-}
+    done
+  } | sort
+  exit 0
+fi
+
+for plugin_name in "$@"; do
+  plugin_dir="$RBENV_ROOT/plugins/$plugin_name"
+  alt_plugin_dir="$RBENV_ROOT/plugins/rbenv-$plugin_name"
+  if [ -d "$plugin_dir" ]; then
+    echo "Removing $plugin_dir ..."
+    rm -rf "$plugin_dir"
+  elif [ -d "$alt_plugin_dir" ]; then
+    echo "Removing $alt_plugin_dir ..."
+    rm -rf "$alt_plugin_dir"
+  else
+    echo "$plugin_name does not installed."
+  fi
+done
