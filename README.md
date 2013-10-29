@@ -40,3 +40,16 @@ Simply clone the repository into the plugins directory:
 
     mkdir -p ~/.rbenv/plugins
     git clone https://github.com/znz/rbenv-plug.git ~/.rbenv/plugins/rbenv-plug
+
+## How to work
+
+When `rbenv plug <git-url>`, install the plugin like installation above.
+
+When `rbenv plug <plugin-name>`, run script in `share/rbenv-plug`.
+
+Because most of plugins named `rbenv-*`,
+arguments of `rbenv plug` and `rbenv unplug` can omit `rbenv-`.
+
+Scripts in `share/rbenv-plug`,
+`rbenv-aliases` runs `rbenv aliases` after installation,
+`rbenv-use` also installs `rbenv-whatis` that required from `rbenv-use`.
