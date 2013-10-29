@@ -22,6 +22,10 @@ or omit `rbenv-`:
 
     rbenv plug update
 
+Install any plugins from git repository:
+
+    rbenv plug https://github.com/sstephenson/ruby-build.git
+
 Uninstall `rbenv-update`:
 
     rbenv unplug rbenv-update
