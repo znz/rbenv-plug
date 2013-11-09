@@ -20,10 +20,15 @@ cd "$RBENV_DIR"
 if [ "$1" = "--complete" ]; then
   {
     for definition in "$PLUGIN_ROOT/share/rbenv-plug/"*; do
-      echo ${definition##*/}
-    done
-    for definition in "$PLUGIN_ROOT/share/rbenv-plug/rbenv-"*; do
-      echo ${definition##*/rbenv-}
+      definition="${definition##*/}"
+      case "${definition}" in
+        rbenv-*)
+          echo ${definition##rbenv-}
+          ;;
+        *)
+          echo ${definition}
+          ;;
+      esac
     done
   } | sort
   exit 0

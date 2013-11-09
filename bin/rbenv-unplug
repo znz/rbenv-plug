@@ -15,10 +15,15 @@ shopt -s nullglob
 if [ --complete = "$1" ]; then
   {
     for plugin in "$RBENV_ROOT/plugins/"*; do
-      echo ${plugin##*/}
-    done
-    for plugin in "$RBENV_ROOT/plugins/rbenv-"*; do
-      echo ${plugin##*/rbenv-}
+      plugin="${plugin##*/}"
+      case "${plugin}" in
+        rbenv-*)
+          echo ${plugin##rbenv-}
+          ;;
+        *)
+          echo ${plugin}
+          ;;
+      esac
     done
   } | sort
   exit 0
