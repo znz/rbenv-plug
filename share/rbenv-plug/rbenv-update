@@ -1,1 +1,1 @@
-rbenv plug https://github.com/rkh/rbenv-update.git
+rbenv plug rkh/rbenv-update

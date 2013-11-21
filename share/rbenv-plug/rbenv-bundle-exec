@@ -1,1 +1,1 @@
-rbenv plug https://github.com/maljub01/rbenv-bundle-exec.git
+rbenv plug maljub01/rbenv-bundle-exec

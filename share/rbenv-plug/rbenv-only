@@ -1,1 +1,1 @@
-rbenv plug https://github.com/rodreegez/rbenv-only.git
+rbenv plug rodreegez/rbenv-only

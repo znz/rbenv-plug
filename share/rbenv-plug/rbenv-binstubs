@@ -1,1 +1,1 @@
-rbenv plug https://github.com/ianheggie/rbenv-binstubs.git
+rbenv plug ianheggie/rbenv-binstubs

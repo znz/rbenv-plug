@@ -1,1 +1,1 @@
-rbenv plug https://github.com/fgrehm/rbenv-install-remote.git
+rbenv plug fgrehm/rbenv-install-remote

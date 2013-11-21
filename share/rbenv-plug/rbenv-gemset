@@ -1,1 +1,1 @@
-rbenv plug https://github.com/jf/rbenv-gemset.git
+rbenv plug jf/rbenv-gemset

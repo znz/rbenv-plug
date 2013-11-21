@@ -1,1 +1,1 @@
-rbenv plug https://github.com/sstephenson/rbenv-vars.git
+rbenv plug sstephenson/rbenv-vars

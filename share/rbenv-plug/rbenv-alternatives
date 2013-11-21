@@ -1,1 +1,1 @@
-rbenv plug https://github.com/terceiro/rbenv-alternatives.git
+rbenv plug terceiro/rbenv-alternatives

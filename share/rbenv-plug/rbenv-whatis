@@ -1,1 +1,1 @@
-rbenv plug https://github.com/rkh/rbenv-whatis.git
+rbenv plug rkh/rbenv-whatis

@@ -1,2 +1,2 @@
-rbenv plug https://github.com/tpope/rbenv-communal-gems.git
+rbenv plug tpope/rbenv-communal-gems
 rbenv communize --all

@@ -1,1 +1,1 @@
-rbenv plug https://github.com/mlafeldt/rbenv-man.git
+rbenv plug mlafeldt/rbenv-man
