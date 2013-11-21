@@ -33,12 +33,13 @@ for plugin_name in "$@"; do
   plugin_dir="$RBENV_ROOT/plugins/$plugin_name"
   alt_plugin_dir="$RBENV_ROOT/plugins/rbenv-$plugin_name"
   if [ -d "$plugin_dir" ]; then
-    echo "Removing $plugin_dir ..."
+    echo "Removing '$plugin_dir'..."
     rm -rf "$plugin_dir"
   elif [ -d "$alt_plugin_dir" ]; then
-    echo "Removing $alt_plugin_dir ..."
+    echo "Removing '$alt_plugin_dir'..."
     rm -rf "$alt_plugin_dir"
   else
-    echo "$plugin_name does not installed."
+    echo "'$plugin_name' does not installed."
+    exit 1
   fi
 done
