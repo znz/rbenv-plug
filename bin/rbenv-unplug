@@ -2,7 +2,11 @@
 #
 # Summary: Remove plugins.
 #
-# Usage: rbenv unplug <plugin> [<plugin> ...]
+# Usage: rbenv unplug [-f|--force] <plugin> [<plugin> ...]
+#
+#    -f  Attempt to remove the specified plugins without prompting
+#        for confirmation. If the plugins do not exist, do not
+#        display an error message.
 
 set -e
 [ -n "$RBENV_DEBUG" ] && set -x
@@ -29,16 +33,32 @@ if [ --complete = "$1" ]; then
   exit 0
 fi
 
+unset FORCE
+if [ "$1" = "-f" ] || [ "$1" = "--force" ]; then
+  FORCE=true
+  shift
+fi
+
+confirm_and_remove () {
+  if [ -z "${FORCE:+set}" ]; then
+    read -p "rbenv-unplug: remove '$1'? "
+    case "$REPLY" in
+    y* | Y* ) ;;
+    * ) exit 1 ;;
+    esac
+  fi
+  echo "Removing '$1'..."
+  rm -rf "$1"
+}
+
 for plugin_name in "$@"; do
   plugin_dir="$RBENV_ROOT/plugins/$plugin_name"
   alt_plugin_dir="$RBENV_ROOT/plugins/rbenv-$plugin_name"
   if [ -d "$plugin_dir" ]; then
-    echo "Removing '$plugin_dir'..."
-    rm -rf "$plugin_dir"
+    confirm_and_remove "$plugin_dir"
   elif [ -d "$alt_plugin_dir" ]; then
-    echo "Removing '$alt_plugin_dir'..."
-    rm -rf "$alt_plugin_dir"
-  else
+    confirm_and_remove "$alt_plugin_dir"
+  elif [ -z "${FORCE:+set}" ]; then
     echo "'$plugin_name' does not installed."
     exit 1
   fi
