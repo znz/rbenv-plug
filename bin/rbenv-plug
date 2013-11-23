@@ -22,6 +22,9 @@ if [ "$1" = "--complete" ]; then
   {
     for definition in "$PLUGIN_ROOT/share/rbenv-plug/"*; do
       definition="${definition##*/}"
+      if [ -d "$RBENV_ROOT/plugins/$definition" ]; then
+        continue
+      fi
       case "${definition}" in
         rbenv-*)
           echo ${definition##rbenv-}
