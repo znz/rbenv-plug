@@ -8,9 +8,8 @@
 #        for confirmation. If the plugins do not exist, do not
 #        display an error message.
 
-set -e
-[ -n "$RBENV_DEBUG" ] && set -x
-set -u
+set -euo pipefail
+[ -n "${RBENV_DEBUG-}" ] && set -x
 shopt -s nullglob
 
 [ $# -gt 0 ] || exec rbenv-help unplug

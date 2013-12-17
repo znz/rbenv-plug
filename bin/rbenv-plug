@@ -6,9 +6,8 @@
 #        rbenv plug <github-user/repo>
 #        rbenv plug <git-url>
 
-set -eo pipefail
-[ -n "$RBENV_DEBUG" ] && set -x
-set -u
+set -euo pipefail
+[ -n "${RBENV_DEBUG-}" ] && set -x
 shopt -s nullglob
 
 [ $# -gt 0 ] || exec rbenv-help plug
