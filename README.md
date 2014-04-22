@@ -53,7 +53,3 @@ arguments of `rbenv plug` and `rbenv unplug` can omit `rbenv-`.
 Scripts in `share/rbenv-plug`,
 `rbenv-aliases` runs `rbenv aliases` after installation,
 `rbenv-use` also installs `rbenv-whatis` that required from `rbenv-use`.
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/znz/rbenv-plug/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
