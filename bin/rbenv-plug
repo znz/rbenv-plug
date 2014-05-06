@@ -39,33 +39,33 @@ fi
 
 mkdir -p "$RBENV_ROOT/plugins"
 
-if [ -f "$PLUGIN_ROOT/share/rbenv-plug/$1" ]; then
-  . "$PLUGIN_ROOT/share/rbenv-plug/$1"
-  exit $?
-elif [ -f "$PLUGIN_ROOT/share/rbenv-plug/rbenv-$1" ]; then
-  . "$PLUGIN_ROOT/share/rbenv-plug/rbenv-$1"
-  exit $?
-fi
+for plugin_name in "$@"; do
+  if [ -f "$PLUGIN_ROOT/share/rbenv-plug/$plugin_name" ]; then
+    bash -e "$PLUGIN_ROOT/share/rbenv-plug/$plugin_name" || exit $?
+    continue
+  elif [ -f "$PLUGIN_ROOT/share/rbenv-plug/rbenv-$plugin_name" ]; then
+    bash -e "$PLUGIN_ROOT/share/rbenv-plug/rbenv-$plugin_name" || exit $?
+    continue
+  fi
 
-case "$1" in
-  *:*)
-    git_url="$1"
-    plugin_name=${git_url##*/}
-    plugin_name=${plugin_name%.git}
-    plugin_dir="$RBENV_ROOT/plugins/$plugin_name"
-    if [ -d "$plugin_dir" ]; then
-      echo "'$plugin_name' already installed." >&2
-      exit 1
-    fi
-    echo "Cloning '${git_url}'..." >&2
-    git clone "$git_url" "$plugin_dir"
-    exit $?
-    ;;
-  */*)
-    github_path="$1"
-    exec rbenv plug "${RBENV_PLUG_PREFIX:-https://github.com/}$1${RBENV_PLUG_SUFFIX-.git}"
-    ;;
-  *)
-    exec rbenv-help plug
-    ;;
-esac
+  case "$plugin_name" in
+    *:*)
+      git_url="$plugin_name"
+      plugin_name=${git_url##*/}
+      plugin_name=${plugin_name%.git}
+      plugin_dir="$RBENV_ROOT/plugins/$plugin_name"
+      if [ -d "$plugin_dir" ]; then
+        echo "'$plugin_name' already installed." >&2
+        continue
+      fi
+      echo "Cloning '${git_url}'..." >&2
+      git clone "$git_url" "$plugin_dir" || exit $?
+      ;;
+    */*)
+      rbenv plug "${RBENV_PLUG_PREFIX:-https://github.com/}$plugin_name${RBENV_PLUG_SUFFIX-.git}" || exit $?
+      ;;
+    *)
+      exec rbenv-help plug
+      ;;
+  esac
+done
