@@ -1,4 +1,4 @@
-rbenv plug taqtiqa/rbenv-plugin
+rbenv plug taqtiqa/rbenv-plugin || exit $?
 echo
 echo "Add PATH manually."
 echo "See https://github.com/taqtiqa/rbenv-plugin#install for detail."

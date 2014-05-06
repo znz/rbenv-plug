@@ -1,4 +1,4 @@
-rbenv plug andyl/rbenv-usergems
+rbenv plug andyl/rbenv-usergems || exit $?
 echo
 echo "Modify ~/.bashrc."
 echo "See https://github.com/andyl/rbenv-usergems#installation for detail."
