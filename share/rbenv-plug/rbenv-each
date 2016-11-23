@@ -1,1 +1,1 @@
-rbenv plug chriseppstein/rbenv-each
+rbenv plug rbenv/rbenv-each
