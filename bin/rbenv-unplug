@@ -40,7 +40,7 @@ fi
 
 confirm_and_remove () {
   if [ -z "${FORCE:+set}" ]; then
-    read -p "rbenv-unplug: remove '$1'? "
+    read -p "rbenv-unplug: remove '$1'? [yN] "
     case "$REPLY" in
     y* | Y* ) ;;
     * ) exit 1 ;;
