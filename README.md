@@ -38,8 +38,8 @@ or omit `rbenv-`:
 
 Simply clone the repository into the plugins directory:
 
-    mkdir -p ~/.rbenv/plugins
-    git clone https://github.com/znz/rbenv-plug.git ~/.rbenv/plugins/rbenv-plug
+    mkdir -p "$(rbenv root)/plugins"
+    git clone https://github.com/znz/rbenv-plug.git "$(rbenv root)/plugins/rbenv-plug"
 
 ## How to work
 
