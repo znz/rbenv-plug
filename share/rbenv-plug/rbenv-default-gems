@@ -1,1 +1,1 @@
-rbenv plug sstephenson/rbenv-default-gems
+rbenv plug rbenv/rbenv-default-gems
