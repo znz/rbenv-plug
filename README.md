@@ -1,16 +1,16 @@
 # rbenv-plug
 
-rbenv-plug is an [rbenv](https://github.com/sstephenson/rbenv) plugin that
+rbenv-plug is an [rbenv](https://github.com/rbenv/rbenv) plugin that
 provides `rbenv plug` and `rbenv unplug` command to install and uninstall
 rbenv plugins.
 
 ## Usage examples
 
-To install plugins listed in [plugins](https://github.com/sstephenson/rbenv/wiki/Plugins):
+To install plugins listed in [plugins](https://github.com/rbenv/rbenv/wiki/Plugins):
 
     rbenv plug <plugin-name>
 
-Install [ruby-build](https://github.com/sstephenson/ruby-build):
+Install [ruby-build](https://github.com/rbenv/ruby-build):
 
     rbenv plug ruby-build
 
@@ -24,7 +24,7 @@ or omit `rbenv-`:
 
 Install any plugins from git repository:
 
-    rbenv plug https://github.com/sstephenson/ruby-build.git
+    rbenv plug https://github.com/rbenv/ruby-build.git
 
 Uninstall `rbenv-update`:
 
