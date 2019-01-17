@@ -24,7 +24,7 @@ or omit `rbenv-`:
 
 Install any plugins from git repository:
 
-    rbenv plug https://github.com/rbenv/ruby-build.git
+    rbenv plug https://github.com/rbenv/ruby-build
 
 Uninstall `rbenv-update`:
 
@@ -38,8 +38,7 @@ or omit `rbenv-`:
 
 Simply clone the repository into the plugins directory:
 
-    mkdir -p "$(rbenv root)/plugins"
-    git clone https://github.com/znz/rbenv-plug.git "$(rbenv root)/plugins/rbenv-plug"
+    git clone https://github.com/znz/rbenv-plug "$(rbenv root)/plugins/rbenv-plug"
 
 ## How to work
 
